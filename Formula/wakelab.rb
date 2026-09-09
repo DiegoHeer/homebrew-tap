@@ -5,13 +5,13 @@
 class Wakelab < Formula
   desc "Wake and sleep your whole homelab from the CLI"
   homepage "https://github.com/DiegoHeer/wakelab"
-  version "0.0.2"
+  version "0.0.3"
   license "GPL-3.0-or-later"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/DiegoHeer/wakelab/releases/download/v0.0.2/wakelab_0.0.2_darwin_amd64.tar.gz"
-      sha256 "215b9d5e18094101cbd7a7f2db0c439072cbe9eb7de248e95070999746fcf40b"
+      url "https://github.com/DiegoHeer/wakelab/releases/download/v0.0.3/wakelab_0.0.3_darwin_amd64.tar.gz"
+      sha256 "4a4794998fbfe531c8f945bd12e7fe5bc20625542801ca4780c6b00449c0f162"
 
       define_method(:install) do
         bin.install "wake"
@@ -21,8 +21,8 @@ class Wakelab < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/DiegoHeer/wakelab/releases/download/v0.0.2/wakelab_0.0.2_darwin_arm64.tar.gz"
-      sha256 "1fc4ce569191c74ba740c00bc337489b0dbfe91ea8e476826161e28f6a338fb5"
+      url "https://github.com/DiegoHeer/wakelab/releases/download/v0.0.3/wakelab_0.0.3_darwin_arm64.tar.gz"
+      sha256 "9dad8d98787ad9a68b6dccf210a627a3272927983a6af3baa65606aeb02ea943"
 
       define_method(:install) do
         bin.install "wake"
@@ -35,8 +35,8 @@ class Wakelab < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/DiegoHeer/wakelab/releases/download/v0.0.2/wakelab_0.0.2_linux_amd64.tar.gz"
-      sha256 "50bc630900da1fbb5316792c436bbd8d32216361aa5b9520edba4a796421f6bc"
+      url "https://github.com/DiegoHeer/wakelab/releases/download/v0.0.3/wakelab_0.0.3_linux_amd64.tar.gz"
+      sha256 "0271ee2d6dcf728945f6245cf783b4f1af32e5da2d228811b18b0d348297386d"
       define_method(:install) do
         bin.install "wake"
         bash_completion.install "completions/wake.bash" => "wake"
@@ -45,8 +45,8 @@ class Wakelab < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/DiegoHeer/wakelab/releases/download/v0.0.2/wakelab_0.0.2_linux_arm64.tar.gz"
-      sha256 "cc717ce1cc03960500807bdbbcb7c42d3ca7f3150c861aa546adc5d8292efddb"
+      url "https://github.com/DiegoHeer/wakelab/releases/download/v0.0.3/wakelab_0.0.3_linux_arm64.tar.gz"
+      sha256 "3080efe571b206d18c5da929e5e36cc9f46490e6e8845aa82ead22aef8235092"
       define_method(:install) do
         bin.install "wake"
         bash_completion.install "completions/wake.bash" => "wake"
@@ -54,6 +54,13 @@ class Wakelab < Formula
         fish_completion.install "completions/wake.fish"
       end
     end
+  end
+
+  def caveats
+    <<~EOS
+      Run this once to enable tab completion in your shell:
+        wake completion install
+    EOS
   end
 
   test do
